@@ -25,6 +25,9 @@ int main()
 		printf("* [7] find                  *\n");
 		printf("* [8] EraseAfter            *\n");
 		printf("* [9] destroy				*\n");
+		printf("* [10] Reverse				*\n");
+		printf("* [11] Sort  				*\n");
+		printf("* [12] RemoveAll  				*\n");
 		printf("********************************************\n");
 		printf("请选择:>");
 		scanf("%d", &select);
@@ -51,33 +54,56 @@ int main()
 			break;
 
 		case 6:
-			printf("请输入要插入的位置:>");
-			scanf("%d", &pos);
-			printf("请输入要插入的值:>");
-			scanf("%d", &item);
-			//SeqListInsertByPos(&mylist, pos, item);
-			break;
-		case 7:
-			printf("请输入要查找的值:>");
+			printf("请输入要插入位置的对应值:>");
 			scanf("%d", &key);
 			SListNode* pos = SListFind(mylist, key);
 			if (pos == NULL)
 				printf("要查找的值%d不存在.\n", key);
 			else
 				printf("要查找的值%d在地址为%p的位置.\n", key, pos);
+			printf("请输入要插入的值:>");
+			scanf("%d", &item);
+			SListInsertAfter(pos, item);
+			break;
+		case 7:
+			printf("请输入要查找的值:>");
+			scanf("%d", &key);
+			pos = SListFind(mylist, key);
+			if (pos == NULL)
+				printf("要查找的值%d不存在.\n", key);
+			else
+				printf("要查找的值%d在地址为%p的位置.\n", key, pos);
 			break;
 		case 8:
-			printf("请输入要删除的起始位置:>");
-			scanf("%d", &pos);
-			//SeqListDeleteByPos(&mylist, pos);
+			printf("请输入要删除位置前一个位置对应数值:>");
+			scanf("%d", &key);
+			pos = SListFind(mylist, key);
+			if (pos == NULL)
+				printf("要查找的值%d不存在.\n", key);
+			else
+				printf("位置为%p.\n",  pos);
+				SListEraseAfter(pos);
 			break;
 
 		case 9:
 			SListDestory(&mylist);
 			break;
-		}
+
+		case 10:
+			SListReverse(&mylist);
+			break;
+		
+		case 11:
+			SListSort(&mylist);
+			break;
+		case 12:
+			printf("请输入要删除的值:>");
+			scanf("%d", &key);
+			SListRemoveAll(&mylist,key);
+			break;
 		system("pause");
-		system("cls");
+		//system("cls");
+		}
 	}
 
 	//SListDestroy(&mylist);

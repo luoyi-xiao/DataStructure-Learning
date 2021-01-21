@@ -34,6 +34,15 @@ void SListInsertAfter(SListNode* pos, SLTDateType x);
 void SListEraseAfter(SListNode* pos);
 // 单链表的销毁
 
+void SListDestory(SListNode** plist);
+
+//单链表翻转
+void SListReverse(SListNode** plist);
+//链表排序
+void SListSort(SListNode** plist);
+
+void SListRemoveAll(SListNode** plist,ElemType key);
+
 //1.初始化
 void SListInit(SListNode** pplist)
 {
@@ -103,13 +112,13 @@ void SListPopBack(SListNode** pplist)
 			*pplist = NULL;
 		else
 		{
-			SListNode* pre = NULL;
-			while (p->next != NULL)
-			{
-				pre = p;
-				p = p->next;
-			}
-			pre->next = NULL;
+		SListNode* pre = NULL;
+		while (p->next != NULL)
+		{
+			pre = p;
+			p = p->next;
+		}
+		pre->next = NULL;
 		}
 		free(p);
 	}
@@ -142,10 +151,32 @@ SListNode* SListFind(SListNode* plist, SLTDateType x)
 void SListInsertAfter(SListNode* pos, SLTDateType x)
 {
 	assert(pos);
+	SListNode* s = BuySListNode(x);
+	s->data = x;
+	s->next = pos->next;
+	pos->next = s;
+
 }
+
 // 单链表删除pos位置之后的值
 // 分析思考为什么不删除pos位置？
-void SListEraseAfter(SListNode* pos);
+void SListEraseAfter(SListNode* pos)
+{
+	assert(pos);
+	if (pos->next == NULL)
+		return;
+	SListNode* p = pos->next;
+	pos->next = NULL;
+	SListNode* q = p;
+	while (q != NULL)
+	{
+		q = q->next;
+		p->next = NULL;
+		free(p);
+		p = q;
+	}
+
+}
 // 单链表的销毁
 void SListDestory(SListNode** plist)
 {
@@ -156,6 +187,96 @@ void SListDestory(SListNode** plist)
 		*plist = p->next;
 		free(p);
 		p = *plist;
+	}
+}
+
+void SListReverse(SListNode** plist)
+{
+	assert(plist);
+	if (plist == NULL)
+		return;
+	if ((*plist)->next == NULL)
+		return;
+	SListNode* p = (*plist)->next;
+	(*plist)->next = NULL;
+	//首先将头结点断开连接
+
+	SListNode* q = p;
+	while (q != NULL)
+	{
+		q = q->next;
+		p->next = *plist;
+		*plist = p;
+		p = q;
+	}
+}
+
+void SListSort(SListNode** plist)
+{
+	assert(plist);
+	if (*plist == NULL || (*plist)->next == NULL)
+		return;
+	//断开链表
+	SListNode* p = (*plist)->next;
+	(*plist)->next = NULL;
+
+	SListNode* q = p;
+	while (q != NULL)
+	{
+		q = q->next;
+		SListNode* t = *plist;
+		SListNode* pre = NULL;
+		while (t != NULL && p->data > t->data)
+		{
+			pre = t;
+			t = t->next;
+		}
+		if(pre == NULL)//在头部插入
+		{
+			p->next = *plist;
+			*plist = p;
+		}
+		else
+		{
+			p->next = pre->next;
+			pre->next = p;
+		}
+		p = q;
+	}
+
+}
+
+
+void SListRemoveAll(SListNode** plist, ElemType key)
+{
+	assert(plist);
+
+	if (*plist== NULL)
+		return;
+	SListNode* p = *plist;
+	SListNode*pre = NULL;
+
+	while (p != NULL)
+	{
+		//判断及相应删除操作
+		if (p->data == key)
+		{
+			if (pre == NULL)//头结点相等时
+				*plist = p->next;
+			else
+				pre->next = p->next;
+			free(p);
+		}
+		else
+		{
+			pre = p;
+			//p = p->next;
+		}
+		//指针移位
+		if (pre == NULL)//删除的是头结点
+			p = *plist;
+		else //删除的是普通节点
+			p = pre->next;
 	}
 }
 
