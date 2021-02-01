@@ -33,8 +33,9 @@ ProgramW6432 = C:\Program Files
 PSModulePath = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
 PT7HOME = F:\downloads\Cisco Packet Tracer 7.0
 PUBLIC = C:\Users\Public
-ServiceHubLogSessionKey = 19E2C07D
+ServiceHubLogSessionKey = A9B480E5
 SESSIONNAME = Console
+SignInWithHomeTenantOnly = False
 SystemDrive = C:
 SystemRoot = C:\WINDOWS
 TEMP = C:\Users\ADMINI~1\AppData\Local\Temp
@@ -53,12 +54,7 @@ VSLANG = 2052
 VSSKUEDITION = Community
 windir = C:\WINDOWS
 
-  Tree.c
-D:\DataStructure-Learning\二叉树\Stack.h(29,18): warning C4018: “>=”: 有符号/无符号不匹配
-D:\DataStructure-Learning\二叉树\Stack.h(50,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“BinTreeNode *”
-D:\DataStructure-Learning\二叉树\Stack.h(77,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“BinTreeNode *”
-D:\DataStructure-Learning\二叉树\Stack.h(151,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“BinTreeNode *”
-D:\DataStructure-Learning\二叉树\Queue.h(75,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“BinTreeNode *”
-D:\DataStructure-Learning\二叉树\Queue.h(147,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“BinTreeNode *”
-D:\DataStructure-Learning\二叉树\Queue.h(179,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“BinTreeNode *”
-  二叉树.vcxproj -> D:\DataStructure-Learning\二叉树\Debug\二叉树.exe
+  Test.c
+D:\DataStructure-Learning\Heap\Heap.h(145,3): warning C4033: “HeapTop”必须返回值
+D:\DataStructure-Learning\Heap\Heap.h(149): warning C4715: “HeapTop”: 不是所有的控件路径都返回值
+  Heap.vcxproj -> D:\DataStructure-Learning\Heap\Debug\Heap.exe
